@@ -13,3 +13,6 @@ TODO：
    Drop html2canvas.js and jsPDF.js into your page with `<script>` or npm or yarn
   
 2. Then you're ready to start making your own pdf
+
+
+[demo](https://rubicker.github.io/html2pdf/)
