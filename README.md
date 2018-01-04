@@ -41,11 +41,17 @@ A simple solution to convert html to pdf use html2canvas.js and jsPDF.js
           const doc = new jsPDF({
             orientation: 'portrait',
             unit: 'mm',
-            // px to mm 增加一定边距
+            /*
+             * px to mm 增加一定边距
+             * 这里的 format 其实就是 pdf 的实际大小
+             */
             format: [w * 0.264583 + 10, h * 0.264583 + 10]
           });
 
-          // 5, 5 为图片在 pdf 上的左上角起点
+          /* 
+           * 5, 5 为图片在 pdf 上的左上角起点
+           * 这里最后两个参数指定图片在 pdf 上呈现的大小
+           */
           doc.addImage(imgData, 'PNG', 5, 5, w * 0.264583, h * 0.264583);
 
           //输出保存命名为content的pdf
@@ -55,3 +61,6 @@ A simple solution to convert html to pdf use html2canvas.js and jsPDF.js
     })
    });
    ```
+   > 修复的 margin 指的是：在 html2canvas.js 中的 canvas 画布总是从页面左上角开始截取范围（不管你传递的页面元素位置），因此若想要生成的元素存在 `margin` 值，则需要通过 `context.translate()` 可以进行一定量的偏移来相抵消。
+   TODO：
+   - [ ] 生成的 PDF 相对体积较大
